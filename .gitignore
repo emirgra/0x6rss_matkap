@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Environment variables (CRITICAL - contains secrets)
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build
+dist/
+build/
+!connectors/jadx/dist/
+!connectors/jadx/dist/**
+
+# Claude
+.claude/

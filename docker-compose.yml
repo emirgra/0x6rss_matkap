@@ -1,0 +1,38 @@
+# PostgreSQL is optional; start only the db service if persistence is wanted.
+#
+#   docker compose up -d db      # start only the database (host port 5433)
+#   # then set DATABASE_URL in .env to:
+#   #   postgres://matkap:matkap@localhost:5433/matkap
+#   npm start                    # run the app on the host
+#
+# Or run everything in containers with `docker compose up`.
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: matkap
+      POSTGRES_PASSWORD: matkap
+      POSTGRES_DB: matkap
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - matkap_pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgres://matkap:matkap@db:5432/matkap
+      HOST: 0.0.0.0
+      MATKAP_TRUST_LOCAL_PROXY: "true"
+    ports:
+      - "127.0.0.1:3000:3000"
+
+volumes:
+  matkap_pgdata:
