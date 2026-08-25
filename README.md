@@ -31,6 +31,62 @@ engine. Use it only on projects and tokens you are authorized to investigate.
   type, family, filename, campaign, source, and daily-activity charts.
 - Feeds auto-refresh every 10 minutes and are cached in the database.
 
+## Interface
+
+The screenshots below show MATKAP's main workspaces. Any indicators or expired
+credentials visible in these examples are historical test data; `.env` values,
+provider API keys, Telegram string sessions, and personal account details are
+not included.
+
+### Hunt workspace
+
+![MATKAP Hunt workspace](docs/screenshots/hunt.png)
+
+Validate an authorized bot token, start or pause an investigation, forward
+messages, and review operation logs and captured content from one workspace.
+
+### IOC Discovery
+
+![MATKAP IOC Discovery](docs/screenshots/ioc-discovery.png)
+
+Search supported intelligence sources for exposed Telegram bot artifacts,
+optionally validate results, resolve chat IDs, and send a result to Hunt.
+
+### Telegram C2 Threat Feed
+
+![MATKAP Telegram C2 Threat Feed](docs/screenshots/threat-feed.png)
+
+Review community-reported Telegram C2 indicators, related infrastructure,
+malware tags, and links back to the original public reports.
+
+### TI Report Dorking
+
+![MATKAP TI Report Dorking](docs/screenshots/ti-report-dorking.png)
+
+Search selected threat-intelligence publishers and rank reports by Telegram C2
+signals such as bot API endpoints, bot references, chat IDs, and send methods.
+
+### MalwareBazaar
+
+![MATKAP MalwareBazaar feed](docs/screenshots/malwarebazaar.png)
+
+Track metadata for recent samples matched by MalwareBazaar's
+`telegram_bot_api` YARA rule without downloading malware files.
+
+### MCP Lab
+
+![MATKAP MCP Lab](docs/screenshots/mcp-lab.png)
+
+Connect to the packaged read-only JADX MCP connector, scan the project already
+open in JADX, and optionally use a configured AI provider as a fallback.
+
+### Threat Statistics
+
+![MATKAP Threat Statistics](docs/screenshots/threat-statistics.png)
+
+Explore 7, 14, or 30-day malware, feed, family, campaign, and daily-activity
+statistics assembled from cached MATKAP data sources.
+
 ## How the hunt works
 
 1. You provide a **bot token** (recovered from a malware sample or IOC Discovery).
@@ -376,8 +432,3 @@ liable for any misuse.
 The previous Python desktop implementation is preserved in
 [`matkap-old/`](matkap-old/README.md). It is included for reference and is not
 required by the current web application.
-
-## Credits
-
-- Original tool: [0x6rss/matkap](https://github.com/0x6rss/matkap)
-- Developed by [@0x6rss](https://x.com/0x6rss)
